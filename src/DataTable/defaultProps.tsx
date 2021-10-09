@@ -100,4 +100,5 @@ export const defaultProps = {
 	onSelectedRowsChange: noop,
 	onSort: noop,
 	onColumnOrderChange: noop,
+	onTableBodyScroll: noop,
 };
