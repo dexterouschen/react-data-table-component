@@ -7,6 +7,7 @@ import ExpanderCollapsedIcon from '../icons/ExpanderCollapsedIcon';
 import ExpanderExpandedIcon from '../icons/ExpanderExpandedIcon';
 import { noop } from './util';
 import { Alignment, Direction } from './constants';
+import { Props } from 'react-infinite-scroll-component';
 
 export const defaultProps = {
 	columns: [],
@@ -100,5 +101,5 @@ export const defaultProps = {
 	onSelectedRowsChange: noop,
 	onSort: noop,
 	onColumnOrderChange: noop,
-	onResponsiveWrapperScroll: noop,
+	infiniteScrollProps: ({} as Props),
 };

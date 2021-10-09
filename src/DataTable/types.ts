@@ -1,5 +1,6 @@
 import { Alignment, Direction, Media } from './constants';
 import { CSSObject } from 'styled-components';
+import { Props } from 'react-infinite-scroll-component';
 
 export type Primitive = string | number | boolean | bigint;
 export type ChangePage = (page: number, totalRows: number) => void;
@@ -100,7 +101,7 @@ export type TableProps<T> = {
 	 *  Shows and displays a header with a title
 	 *  */
 	title?: string | React.ReactNode;
-	onResponsiveWrapperScroll?: UIEventHandler<HTMLDivElement>;
+	infiniteScrollProps?: Props;
 };
 
 export type TableColumnBase = {
