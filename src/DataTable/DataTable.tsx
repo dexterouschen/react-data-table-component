@@ -104,7 +104,7 @@ function DataTable<T>(props: TableProps<T>): JSX.Element {
 		customStyles = defaultProps.customStyles,
 		direction = defaultProps.direction,
 		onColumnOrderChange = defaultProps.onColumnOrderChange,
-		onTableBodyScroll = defaultProps.onTableBodyScroll,
+		onResponsiveWrapperScroll = defaultProps.onResponsiveWrapperScroll,
 	} = props;
 
 	const {
@@ -326,6 +326,7 @@ function DataTable<T>(props: TableProps<T>): JSX.Element {
 			)}
 
 			<ResponsiveWrapper
+				onScroll={onResponsiveWrapperScroll}
 				responsive={responsive}
 				fixedHeader={fixedHeader}
 				fixedHeaderScrollHeight={fixedHeaderScrollHeight}
@@ -388,7 +389,7 @@ function DataTable<T>(props: TableProps<T>): JSX.Element {
 						{progressPending && persistTableHead && <ProgressWrapper>{progressComponent}</ProgressWrapper>}
 
 						{!progressPending && rows.length > 0 && (
-							<Body className="rdt_TableBody" role="rowgroup" onScroll={onTableBodyScroll}>
+							<Body className="rdt_TableBody" role="rowgroup">
 								{tableRows.map((row, i) => {
 									const key = prop(row as TableRow, keyField) as string | number;
 									const id = isEmpty(key) ? i : key;

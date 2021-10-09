@@ -100,7 +100,7 @@ export type TableProps<T> = {
 	 *  Shows and displays a header with a title
 	 *  */
 	title?: string | React.ReactNode;
-	onTableBodyScroll?: (e: React.UIEvent) => void;
+	onResponsiveWrapperScroll?: UIEventHandler<HTMLDivElement>;
 };
 
 export type TableColumnBase = {
