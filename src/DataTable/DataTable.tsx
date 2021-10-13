@@ -420,59 +420,59 @@ function DataTable<T>(props: TableProps<T>): JSX.Element {
 									refreshFunction={ infiniteScrollProps.refreshFunction }
 									initialScrollY={ infiniteScrollProps.initialScrollY }
 									inverse={ infiniteScrollProps.inverse }
-									>
-								{tableRows.map((row, i) => {
-									const key = prop(row as TableRow, keyField) as string | number;
-									const id = isEmpty(key) ? i : key;
-									const selected = isRowSelected(row, selectedRows, keyField);
-									const expanderExpander = !!(expandableRows && expandableRowExpanded && expandableRowExpanded(row));
-									const expanderDisabled = !!(expandableRows && expandableRowDisabled && expandableRowDisabled(row));
+								>
+									{tableRows.map((row, i) => {
+										const key = prop(row as TableRow, keyField) as string | number;
+										const id = isEmpty(key) ? i : key;
+										const selected = isRowSelected(row, selectedRows, keyField);
+										const expanderExpander = !!(expandableRows && expandableRowExpanded && expandableRowExpanded(row));
+										const expanderDisabled = !!(expandableRows && expandableRowDisabled && expandableRowDisabled(row));
 
-									return (
-										<Row
-											id={id}
-											key={id}
-											keyField={keyField}
-											data-row-id={id}
-											columns={tableColumns}
-											row={row}
-											rowCount={rows.length}
-											rowIndex={i}
-											selectableRows={selectableRows}
-											expandableRows={expandableRows}
-											expandableIcon={expandableIcon}
-											highlightOnHover={highlightOnHover}
-											pointerOnHover={pointerOnHover}
-											dense={dense}
-											expandOnRowClicked={expandOnRowClicked}
-											expandOnRowDoubleClicked={expandOnRowDoubleClicked}
-											expandableRowsComponent={expandableRowsComponent}
-											expandableRowsComponentProps={expandableRowsComponentProps}
-											expandableRowsHideExpander={expandableRowsHideExpander}
-											defaultExpanderDisabled={expanderDisabled}
-											defaultExpanded={expanderExpander}
-											expandableInheritConditionalStyles={expandableInheritConditionalStyles}
-											conditionalRowStyles={conditionalRowStyles}
-											selected={selected}
-											selectableRowsHighlight={selectableRowsHighlight}
-											selectableRowsComponent={selectableRowsComponent}
-											selectableRowsComponentProps={selectableRowsComponentProps}
-											selectableRowDisabled={selectableRowDisabled}
-											selectableRowsSingle={selectableRowsSingle}
-											striped={striped}
-											onRowExpandToggled={onRowExpandToggled}
-											onRowClicked={handleRowClicked}
-											onRowDoubleClicked={handleRowDoubleClicked}
-											onSelectedRow={handleSelectedRow}
-											draggingColumnId={draggingColumnId}
-											onDragStart={handleDragStart}
-											onDragOver={handleDragOver}
-											onDragEnd={handleDragEnd}
-											onDragEnter={handleDragEnter}
-											onDragLeave={handleDragLeave}
-										/>
-									);
-								})}
+										return (
+											<Row
+												id={id}
+												key={id}
+												keyField={keyField}
+												data-row-id={id}
+												columns={tableColumns}
+												row={row}
+												rowCount={rows.length}
+												rowIndex={i}
+												selectableRows={selectableRows}
+												expandableRows={expandableRows}
+												expandableIcon={expandableIcon}
+												highlightOnHover={highlightOnHover}
+												pointerOnHover={pointerOnHover}
+												dense={dense}
+												expandOnRowClicked={expandOnRowClicked}
+												expandOnRowDoubleClicked={expandOnRowDoubleClicked}
+												expandableRowsComponent={expandableRowsComponent}
+												expandableRowsComponentProps={expandableRowsComponentProps}
+												expandableRowsHideExpander={expandableRowsHideExpander}
+												defaultExpanderDisabled={expanderDisabled}
+												defaultExpanded={expanderExpander}
+												expandableInheritConditionalStyles={expandableInheritConditionalStyles}
+												conditionalRowStyles={conditionalRowStyles}
+												selected={selected}
+												selectableRowsHighlight={selectableRowsHighlight}
+												selectableRowsComponent={selectableRowsComponent}
+												selectableRowsComponentProps={selectableRowsComponentProps}
+												selectableRowDisabled={selectableRowDisabled}
+												selectableRowsSingle={selectableRowsSingle}
+												striped={striped}
+												onRowExpandToggled={onRowExpandToggled}
+												onRowClicked={handleRowClicked}
+												onRowDoubleClicked={handleRowDoubleClicked}
+												onSelectedRow={handleSelectedRow}
+												draggingColumnId={draggingColumnId}
+												onDragStart={handleDragStart}
+												onDragOver={handleDragOver}
+												onDragEnd={handleDragEnd}
+												onDragEnter={handleDragEnter}
+												onDragLeave={handleDragLeave}
+											/>
+										);
+									})}
 								</InfiniteScroll>
 							</Body>
 						)}
