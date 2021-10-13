@@ -1,6 +1,6 @@
 import { Alignment, Direction, Media } from './constants';
 import { CSSObject } from 'styled-components';
-import { Props } from 'react-infinite-scroll-component';
+import { Props } from './infiniteScrollProps';
 
 export type Primitive = string | number | boolean | bigint;
 export type ChangePage = (page: number, totalRows: number) => void;
