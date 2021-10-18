@@ -1,5 +1,5 @@
 import { CSSObject } from 'styled-components';
-import { ConditionalStyles, TableColumn, Format, TableRow, Selector, SortDirection, SortFunction } from './types';
+import { ConditionalStyles, TableColumn, Format, TableRow, Selector, SortOrder, SortFunction } from './types';
 
 export function prop<T, K extends keyof T>(obj: T, key: K): T[K] {
 	return obj[key];
@@ -13,25 +13,11 @@ export function isEmpty(field: string | number | undefined = ''): boolean {
 	return !field || field.length === 0;
 }
 
-export function setRowData<T>(
-	rows: T[],
-	selector: Selector<T> | null | undefined,
-	direction: SortDirection,
-	sortServer: boolean,
-	sortFn?: SortFunction<T> | null,
-): T[] {
-	if (sortServer || !selector) {
-		return rows;
-	}
-
-	return sort(rows, selector, direction, sortFn);
-}
-
 export function sort<T>(
 	rows: T[],
 	// TODO: remove string in V8
 	selector: Selector<T> | string | null | undefined,
-	direction: SortDirection,
+	direction: SortOrder,
 	sortFn?: SortFunction<T> | null,
 ): T[] {
 	if (!selector) {
@@ -43,42 +29,40 @@ export function sort<T>(
 		return sortFn(rows.slice(0), selector as Selector<T>, direction);
 	}
 
-	return rows
-		.sort((a: T, b: T) => {
-			let aValue;
-			let bValue;
+	return rows.slice(0).sort((a: T, b: T) => {
+		let aValue;
+		let bValue;
 
-			if (typeof selector === 'string') {
-				aValue = parseSelector(a, selector);
-				bValue = parseSelector(b, selector);
-			} else {
-				aValue = selector(a);
-				bValue = selector(b);
+		if (typeof selector === 'string') {
+			aValue = parseSelector(a, selector);
+			bValue = parseSelector(b, selector);
+		} else {
+			aValue = selector(a);
+			bValue = selector(b);
+		}
+
+		if (direction === 'asc') {
+			if (aValue < bValue) {
+				return -1;
 			}
 
-			if (direction === 'asc') {
-				if (aValue < bValue) {
-					return -1;
-				}
+			if (aValue > bValue) {
+				return 1;
+			}
+		}
 
-				if (aValue > bValue) {
-					return 1;
-				}
+		if (direction === 'desc') {
+			if (aValue > bValue) {
+				return -1;
 			}
 
-			if (direction === 'desc') {
-				if (aValue > bValue) {
-					return -1;
-				}
-
-				if (aValue < bValue) {
-					return 1;
-				}
+			if (aValue < bValue) {
+				return 1;
 			}
+		}
 
-			return 0;
-		})
-		.slice(0);
+		return 0;
+	});
 }
 
 // TODO: string based selectors will be removed in v8
@@ -172,8 +156,8 @@ export function decorateColumns<T>(columns: TableColumn<T>[]): TableColumn<T>[] 
 	});
 }
 
-export function getSortDirection(ascDirection: boolean | undefined = false): SortDirection {
-	return ascDirection ? 'asc' : 'desc';
+export function getSortDirection(ascDirection: boolean | undefined = false): SortOrder {
+	return ascDirection ? SortOrder.ASC : SortOrder.DESC;
 }
 
 export function handleFunctionProps(

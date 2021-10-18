@@ -11,9 +11,12 @@ export type {
 	Theme,
 	Themes,
 	ConditionalStyles,
+	ExpanderComponentProps,
+	PaginationComponentProps,
 	PaginationOptions,
 	PaginationServerOptions,
 	ContextMessage,
+	SortOrder,
 } from './DataTable/types';
 
 export default DataTable;

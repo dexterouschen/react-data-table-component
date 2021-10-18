@@ -7,13 +7,23 @@ import TextField from '@material-ui/core/TextField';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import data from '../constants/sampleMovieData';
-import DataTable, { Alignment, Direction, TableProps, TableColumn } from '../../src/index';
+import DataTable, { Alignment, Direction, TableProps, TableColumn, ExpanderComponentProps } from '../../src/index';
 
 interface Row {
 	title: string;
 	director: string;
 	year: string;
 }
+
+const ExpandableRowComponent: React.FC<ExpanderComponentProps<Row>> = ({ data }) => {
+	return (
+		<>
+			<p>{data.title}</p>
+			<p>{data.director}</p>
+			<p>{data.year}</p>
+		</>
+	);
+};
 
 const subHeaderComponent = (
 	<div style={{ display: 'flex', alignItems: 'center' }}>
@@ -99,6 +109,7 @@ function KitchenSinkStory({
 			selectableRowsSingle={selectableRowsSingle}
 			selectableRowsVisibleOnly={selectableRowsVisibleOnly}
 			expandableRows={expandableRows}
+			expandableRowsComponent={ExpandableRowComponent}
 			expandOnRowClicked={expandOnRowClicked}
 			expandOnRowDoubleClicked={expandOnRowDoubleClicked}
 			expandableRowsHideExpander={expandableRowsHideExpander}
